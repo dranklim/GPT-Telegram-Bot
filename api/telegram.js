@@ -1,5 +1,5 @@
 const { bot, handleMessage, handleStart, getMessageFromUpdate, updateBotCommands } = require('../src/bot');
-const { Redis } = require('@upstash/redis');
+import { Redis } from '@upstash/redis'
 const { UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN } = require('../src/config');
 
 const redis = new Redis({
