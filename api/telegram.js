@@ -16,10 +16,10 @@ module.exports = async (req, res) => {
       
       if (update.update_id) {
         const key = `processed:${update.update_id}`;
-        const isProcessed = await redis.get(key);
+        // const isProcessed = await redis.get(key);
         
         if (!isProcessed) {
-          await redis.set(key, 'true', { ex: 86400 });
+          // await redis.set(key, 'true', { ex: 86400 });
           
           const message = getMessageFromUpdate(update);
           if (message) {
@@ -28,13 +28,13 @@ module.exports = async (req, res) => {
             // 检查是否是新用户
             const userId = message.from.id;
             const userKey = `user:${userId}`;
-            const userExists = await redis.get(userKey);
+            // const userExists = await redis.get(userKey);
             
-            if (!userExists) {
-              console.log(`New user detected: ${userId}`);
-              await redis.set(userKey, 'true');
-              await updateBotCommands(userId);
-            }
+            // if (!userExists) {
+              // console.log(`New user detected: ${userId}`);
+              // await redis.set(userKey, 'true');
+              // await updateBotCommands(userId);
+            // }
             
             await handleMessage(update);
             console.log('Message handled successfully');
